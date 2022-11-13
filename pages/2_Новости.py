@@ -6,7 +6,6 @@ from reactions import *
 st.subheader('Новости')
 
 text = st.text_area('Текст', key='news_text')
-text_copy = copy.copy(text)
 
 news_tags = NEWS_DATA_DEFAULT
 FILE_NAME = 'news'
@@ -60,7 +59,8 @@ with delete_col:
     if st.button('Delete'):
         delete_prev(FILE_NAME)
 with next_col:
-    if st.button('Next ->', on_click=clear_news_text):
+    text_copy = copy.copy(text)
+    if st.button('Next ->'):
         news_tags['text'] = [text_copy]
         react_news(news_tags, FILE_NAME)
         news_tags = NEWS_DATA_DEFAULT

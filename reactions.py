@@ -1,5 +1,5 @@
 import pandas as pd
-import streamlit as st
+import os.path
 
 IDEA_DATA = pd.DataFrame.from_dict({'text': ['хуета, а не идея'], 'idea': [0]})
 TECH_DATA = pd.DataFrame.from_dict(
@@ -9,7 +9,7 @@ TECH_DATA = pd.DataFrame.from_dict(
      'ChatBot': [0], 'Management': [0], 'B2B': [0], 'B2C': [1], 'B2G': [0],
      'Социальные': [0], 'Наукоемкие': [0], 'Инженерные': [0], 'Прикладные': [1], 'Медицинские': [0]})
 
-NEWS_DATA = pd.DataFrame.from_dict({
+NEWS_DATA_DEFAULT = pd.DataFrame.from_dict({
     'text': [''],
     'support': [0],
     'hack': [0],
@@ -31,32 +31,19 @@ NEWS_DATA = pd.DataFrame.from_dict({
 })
 
 
-def clear_news_text():
-    st.session_state["news_text"] = ""
+
+def react_news(data, typ):
+    if os.path.isfile(typ + '.csv'):
+        df = pd.DataFrame.from_dict(data)
+        tech_data = pd.concat([pd.read_csv(typ + '.csv', sep=';'), df])
+        tech_data.to_csv(typ + '.csv', sep=';')
+    else:
+        df = pd.DataFrame.from_dict(data)
+        df.to_csv(typ + '.csv', sep=';')
 
 
-@st.cache
-def convert_df(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
-
-
-def react_idea(data: dict):
-    global IDEA_DATA
-    df = pd.DataFrame.from_dict(data)
-    IDEA_DATA = pd.concat([IDEA_DATA, df])
-
-
-def react_tech(data: dict):
-    global TECH_DATA
-    df = pd.DataFrame.from_dict(data)
-    TECH_DATA = pd.concat([TECH_DATA, df])
-
-
-def delete_prev():
-    global IDEA_DATA
-    global TECH_DATA
-    global NEWS_DATA
-    IDEA_DATA.drop(IDEA_DATA.tail(1).index, inplace=True)
-    TECH_DATA.drop(TECH_DATA.tail(1).index, inplace=True)
-    NEWS_DATA.drop(NEWS_DATA.tail(1).index, inplace=True)
+def delete_prev(typ):
+    if os.path.isfile(typ + '.csv'):
+        dt = pd.read_csv(typ + '.csv', sep=';')
+        dt.drop(dt.tail(1).index, inplace=True)
+        dt.to_csv(typ + '.csv', sep=';')

@@ -1,5 +1,6 @@
 import pandas as pd
 import os.path
+import streamlit as st
 
 IDEA_DATA = pd.DataFrame.from_dict({'text': ['хуета, а не идея'], 'idea': [0]})
 TECH_DATA = pd.DataFrame.from_dict(
@@ -30,6 +31,14 @@ NEWS_DATA_DEFAULT = pd.DataFrame.from_dict({
     'ai': [0]
 })
 
+
+@st.cache
+def convert_df(df):
+    return df.to_csv().encode('utf-8')
+
+
+def clear_news_text():
+    st.session_state["news_text"] = ""
 
 
 def react_news(data, typ):

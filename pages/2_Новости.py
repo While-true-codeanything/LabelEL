@@ -1,9 +1,14 @@
+import pandas as pd
 import streamlit as st
+
+from reactions import clear_news_text
 
 st.subheader('Новости')
 
-text = st.text_area('Текст')
+text = st.text_area('Текст', key='news_text')
+
 news_tags = {
+    'text': [text],
     'support': [0],
     'hack': [0],
     'accelerator': [0],
@@ -61,6 +66,20 @@ with applied_col:
         news_tags['web3'] = [int(st.checkbox('Web 3'))]
         news_tags['utilities'] = [int(st.checkbox('Утилиты'))]
         news_tags['ai'] = [int(st.checkbox('ИИ'))]
-print(news_tags)
 
+st.title('')
+clear_col, delete_col, next_col, export_col = st.columns(4)
+with clear_col:
+    if st.button('Clear', on_click=clear_news_text):
 
+with delete_col:
+    if st.button('Delete'):
+        print(0)
+with next_col:
+    if st.button('Next ->'):
+        print(0)
+with export_col:
+    if st.button('Export'):
+        print(0)
+
+# st.download_button('export', data=NEWS_DATA, file_name='valid.csv')

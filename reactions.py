@@ -39,6 +39,9 @@ def convert_df(df):
 
 def clear_news_text():
     st.session_state["news_text"] = ""
+    for state in st.session_state.keys():
+        if 'check' in state:
+            st.session_state[state] = False
 
 
 def react_news(data, typ):

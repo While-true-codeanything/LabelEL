@@ -4,7 +4,7 @@ import streamlit as st
 
 st.subheader('Идея или нет')
 
-text = st.text_area('idea text', key='idea_text')
+text = st.text_area('Текст', key='idea_text')
 
 idea_tags = IDEA_DATA_DEFAULT
 idea_tags['text'] = [text]
@@ -12,12 +12,9 @@ idea_tags['text'] = [text]
 FILE_NAME = 'idea'
 
 st.subheader('Тип')
-id_col = st.columns(1)
-with id_col[0]:
-    id_n = int(st.checkbox('Это идея проекта', key='check3_ide'))
-    idea_tags['idea'] = [id_n]
+idea_tags['idea'] = [int(st.checkbox('Это идея проекта', key='check3_idea'))]
 
-st.title('')
+st.subheader('')
 clear_col_3, delete_col_3, next_col_3, export_col_3 = st.columns(4)
 with clear_col_3:
     if st.button('Clear', on_click=clear_idea_checks):

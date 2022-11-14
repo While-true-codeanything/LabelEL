@@ -2,7 +2,7 @@ import pandas as pd
 import os.path
 import streamlit as st
 
-IDEA_DATA = pd.DataFrame.from_dict({'text': ['хуета, а не идея'], 'idea': [0]})
+IDEA_DATA = pd.DataFrame.from_dict({'text': [''], 'idea': [0]})
 TECH_DATA_DEFAULT = {'text': [''], 'WEB': [0], 'Mobile': [0], 'Engineering': [0],
                      'Metaverse': [0], 'Data Science': [0],
                      'Desktop': [0],
@@ -51,7 +51,7 @@ def clear_idea_checks(tags: dict = None, filename: str = None):
         react_news(tags, filename)
     st.session_state['idea_text'] = ""
     for state in st.session_state.keys():
-        if 'idea' in state:
+        if 'check3' in state:
             st.session_state[state] = False
 
 

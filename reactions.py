@@ -29,6 +29,7 @@ NEWS_DATA_DEFAULT = {
     'utilities': [0],
     'ai': [0]
 }
+IDEA_DATA_DEFAULT = {'text': [''], 'idea': [0]}
 
 
 @st.cache
@@ -42,6 +43,15 @@ def clear_news_checks(tags: dict = None, filename: str = None):
     st.session_state['news_text'] = ""
     for state in st.session_state.keys():
         if 'check' in state:
+            st.session_state[state] = False
+
+
+def clear_idea_checks(tags: dict = None, filename: str = None):
+    if tags is not None and filename is not None:
+        react_news(tags, filename)
+    st.session_state['idea_text'] = ""
+    for state in st.session_state.keys():
+        if 'idea' in state:
             st.session_state[state] = False
 
 

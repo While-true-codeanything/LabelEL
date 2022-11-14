@@ -21,7 +21,7 @@ with clear_col_3:
         idea_tags = IDEA_DATA_DEFAULT
 
 with delete_col_3:
-    if st.button('Delete'):
+    if st.button('Delete last'):
         delete_prev(FILE_NAME)
 with next_col_3:
     if st.button('Next ->', on_click=clear_idea_checks, args=[idea_tags, FILE_NAME]):

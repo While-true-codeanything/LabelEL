@@ -64,7 +64,7 @@ with clear_col:
         tech_tags = TECH_DATA_DEFAULT
 
 with delete_col:
-    if st.button('Delete'):
+    if st.button('Delete last'):
         delete_prev(FILE_NAME)
 with next_col:
     if st.button('Next ->', on_click=clear_tech_checks, args=[tech_tags, FILE_NAME]):

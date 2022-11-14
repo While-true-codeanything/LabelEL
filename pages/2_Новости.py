@@ -4,9 +4,11 @@ import streamlit as st
 
 st.subheader('Новости')
 
-text = st.text_area('text')
+text = st.text_area('text', key='news_text')
 
 news_tags = NEWS_DATA_DEFAULT
+news_tags['text'] = [text]
+
 FILE_NAME = 'news'
 
 st.subheader('Тип')
@@ -51,16 +53,14 @@ with applied_col:
 st.title('')
 clear_col, delete_col, next_col, export_col = st.columns(4)
 with clear_col:
-    if st.button('Clear', on_click=clear_news_checks):
+    if st.button('Clear'):
         news_tags = NEWS_DATA_DEFAULT
 
 with delete_col:
     if st.button('Delete'):
         delete_prev(FILE_NAME)
 with next_col:
-    if st.button('Next ->', on_click=clear_news_checks):
-        news_tags['text'] = text
-        react_news(news_tags, FILE_NAME)
+    if st.button('Next ->', on_click=clear_news_checks, args=[news_tags, FILE_NAME]):
         news_tags = NEWS_DATA_DEFAULT
 
 with export_col:

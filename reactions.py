@@ -37,7 +37,9 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-def clear_news_checks():
+def clear_news_checks(tags, filename):
+    react_news(tags, filename)
+    st.session_state['news_text'] = ""
     for state in st.session_state.keys():
         if 'check' in state:
             st.session_state[state] = False

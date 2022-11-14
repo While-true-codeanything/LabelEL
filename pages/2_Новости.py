@@ -53,7 +53,7 @@ with applied_col:
 st.title('')
 clear_col, delete_col, next_col, export_col = st.columns(4)
 with clear_col:
-    if st.button('Clear'):
+    if st.button('Clear', on_click=clear_news_checks):
         news_tags = NEWS_DATA_DEFAULT
 
 with delete_col:

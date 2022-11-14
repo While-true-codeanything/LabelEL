@@ -3,12 +3,11 @@ import os.path
 import streamlit as st
 
 IDEA_DATA = pd.DataFrame.from_dict({'text': ['хуета, а не идея'], 'idea': [0]})
-TECH_DATA = pd.DataFrame.from_dict(
-    {'text': ['гениальный проект дрона доставщика пиццы'], 'WEB': [1], 'Mobile': [0], 'Engineering': [1],
-     'Metverse': [0], 'Data Science': [0],
-     'Desktop': [0],
-     'ChatBot': [0], 'Management': [0], 'B2B': [0], 'B2C': [1], 'B2G': [0],
-     'Социальные': [0], 'Наукоемкие': [0], 'Инженерные': [0], 'Прикладные': [1], 'Медицинские': [0]})
+IDEAS_DATA_DEFAULT = {'text': [''], 'WEB': [0], 'Mobile': [0], 'Engineering': [0],
+                      'Metaverse': [0], 'Data Science': [0],
+                      'Desktop': [0],
+                      'ChatBot': [0], 'B2B': [0], 'B2C': [0], 'B2G': [0],
+                      'Социальные': [0], 'Наукоемкие': [0], 'Инженерные': [0], 'Прикладные': [0], 'Медицинские': [0]}
 
 NEWS_DATA_DEFAULT = {
     'text': [''],
@@ -37,8 +36,9 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-def clear_news_checks(tags, filename):
-    react_news(tags, filename)
+def clear_news_checks(tags: dict = None, filename: str = None):
+    if tags is not None and filename is not None:
+        react_news(tags, filename)
     st.session_state['news_text'] = ""
     for state in st.session_state.keys():
         if 'check' in state:

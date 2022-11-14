@@ -79,3 +79,11 @@ def delete_prev(typ):
         dt = pd.read_csv(typ + '.csv', sep=';')
         dt.drop(dt.tail(1).index, inplace=True)
         dt.to_csv(typ + '.csv', sep=';', index=False)
+
+
+def check_col(filename: str = None):
+    if os.path.isfile(filename + '.csv'):
+        dt = pd.read_csv(filename + '.csv', sep=';')
+        return len(dt)
+    else:
+        return 0

@@ -8,6 +8,7 @@ text = st.text_area('Текст', key='news_text')
 news_tags = NEWS_DATA_DEFAULT
 news_tags['text'] = [text]
 FILE_NAME = 'news'
+st.markdown(f"**На данный момент в датасете {check_col(FILE_NAME)} строк", unsafe_allow_html=False)
 
 st.subheader('Тип')
 support_col, market_col, product_col = st.columns(3)

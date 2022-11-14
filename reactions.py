@@ -64,13 +64,14 @@ def clear_tech_checks(tags: dict = None, filename: str = None):
 
 
 def react_news(data, typ):
-    if os.path.isfile(typ + '.csv'):
-        df = pd.DataFrame.from_dict(data)
-        tech_data = pd.concat([pd.read_csv(typ + '.csv', sep=';'), df])
-        tech_data.to_csv(typ + '.csv', sep=';', index=False)
-    else:
-        df = pd.DataFrame.from_dict(data)
-        df.to_csv(typ + '.csv', sep=';', index=False)
+    if data['text'] != ['']:
+        if os.path.isfile(typ + '.csv'):
+            df = pd.DataFrame.from_dict(data)
+            tech_data = pd.concat([pd.read_csv(typ + '.csv', sep=';'), df])
+            tech_data.to_csv(typ + '.csv', sep=';', index=False)
+        else:
+            df = pd.DataFrame.from_dict(data)
+            df.to_csv(typ + '.csv', sep=';', index=False)
 
 
 def delete_prev(typ):

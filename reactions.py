@@ -2,7 +2,6 @@ import pandas as pd
 import os.path
 import streamlit as st
 
-IDEA_DATA = pd.DataFrame.from_dict({'text': [''], 'idea': [0]})
 TECH_DATA_DEFAULT = {'text': [''], 'WEB': [0], 'Mobile': [0], 'Engineering': [0],
                      'Metaverse': [0], 'Data Science': [0],
                      'Desktop': [0],

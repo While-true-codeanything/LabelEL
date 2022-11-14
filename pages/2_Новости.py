@@ -8,7 +8,6 @@ text = st.text_area('Текст', key='news_text')
 
 news_tags = NEWS_DATA_DEFAULT
 news_tags['text'] = [text]
-
 FILE_NAME = 'news'
 
 st.subheader('Тип')
@@ -16,14 +15,14 @@ support_col, market_col, product_col = st.columns(3)
 
 with support_col:
     news_tags['support'] = [int(st.checkbox('Мера поддержки', key='check_support'))]
-    if news_tags['support']:
+    with st.expander('', expanded=news_tags['support'][0]):
         news_tags['hack'] = [int(st.checkbox('Хакатон', key='check_hack'))]
         news_tags['accelerator'] = [int(st.checkbox('Акселератор', key='check_accel'))]
         news_tags['grant'] = [int(st.checkbox('Грант', key='check_grant'))]
 
 with market_col:
     news_tags['market'] = [int(st.checkbox('Рынок', key='check_market'))]
-    if news_tags['market']:
+    with st.expander('', expanded=news_tags['market'][0]):
         news_tags['market_news'] = [int(st.checkbox('Новости рынка', key='check_market_news'))]
         news_tags['market_review'] = [int(st.checkbox('Обзор рынка', key='check_market_review'))]
         news_tags['market_expert_opinion'] = [int(st.checkbox('Мнение эксперта', key='check_market_expert_opinion'))]
@@ -42,10 +41,11 @@ with engineer_col:
     news_tags['engineer'] = [int(st.checkbox('Инженерные', key='check_eng'))]
 with applied_col:
     news_tags['applied'] = [int(st.checkbox('Прикладные', key='check_apply'))]
-    if news_tags['applied']:
+    with st.expander('', expanded=news_tags['applied'][0]):
         news_tags['web3'] = [int(st.checkbox('Web 3', key='check_web3'))]
         news_tags['utilities'] = [int(st.checkbox('Утилиты', key='check_util'))]
         news_tags['ai'] = [int(st.checkbox('ИИ', key='check_ai'))]
+
 
 st.title('')
 clear_col, delete_col, next_col, export_col = st.columns(4)

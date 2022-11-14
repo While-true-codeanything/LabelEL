@@ -10,7 +10,7 @@ TECH_DATA = pd.DataFrame.from_dict(
      'ChatBot': [0], 'Management': [0], 'B2B': [0], 'B2C': [1], 'B2G': [0],
      'Социальные': [0], 'Наукоемкие': [0], 'Инженерные': [0], 'Прикладные': [1], 'Медицинские': [0]})
 
-NEWS_DATA_DEFAULT = pd.DataFrame.from_dict({
+NEWS_DATA_DEFAULT = {
     'text': [''],
     'support': [0],
     'hack': [0],
@@ -29,7 +29,7 @@ NEWS_DATA_DEFAULT = pd.DataFrame.from_dict({
     'web3': [0],
     'utilities': [0],
     'ai': [0]
-})
+}
 
 
 @st.cache
@@ -37,8 +37,7 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 
-def clear_news_text():
-    st.session_state["news_text"] = ""
+def clear_news_checks():
     for state in st.session_state.keys():
         if 'check' in state:
             st.session_state[state] = False

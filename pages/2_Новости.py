@@ -1,11 +1,10 @@
-import copy
-import os.path
 
 from reactions import *
+import streamlit as st
 
 st.subheader('Новости')
 
-text = st.text_area('Текст', key='news_text')
+text = st.text_area('text')
 
 news_tags = NEWS_DATA_DEFAULT
 FILE_NAME = 'news'
@@ -52,16 +51,15 @@ with applied_col:
 st.title('')
 clear_col, delete_col, next_col, export_col = st.columns(4)
 with clear_col:
-    if st.button('Clear', on_click=clear_news_text):
+    if st.button('Clear', on_click=clear_news_checks):
         news_tags = NEWS_DATA_DEFAULT
 
 with delete_col:
     if st.button('Delete'):
         delete_prev(FILE_NAME)
 with next_col:
-    text_copy = copy.copy(text)
-    if st.button('Next ->'):
-        news_tags['text'] = [text_copy]
+    if st.button('Next ->', on_click=clear_news_checks):
+        news_tags['text'] = text
         react_news(news_tags, FILE_NAME)
         news_tags = NEWS_DATA_DEFAULT
 

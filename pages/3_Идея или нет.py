@@ -10,7 +10,7 @@ idea_tags = IDEA_DATA_DEFAULT
 idea_tags['text'] = [text]
 
 FILE_NAME = 'idea'
-st.markdown(f"**На данный момент в датасете {check_col(FILE_NAME)} строк", unsafe_allow_html=False)
+st.markdown(f"**На данный момент в датасете {check_col(FILE_NAME)} строк**", unsafe_allow_html=False)
 
 st.subheader('Тип')
 idea_tags['idea'] = [int(st.checkbox('Это идея проекта', key='check3_idea'))]

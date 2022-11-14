@@ -10,7 +10,7 @@ tech_tags = TECH_DATA_DEFAULT
 tech_tags['text'] = [text]
 
 FILE_NAME = 'tech'
-st.markdown(f"**На данный момент в датасете {check_col(FILE_NAME)} строк", unsafe_allow_html=False)
+st.markdown(f"**На данный момент в датасете {check_col(FILE_NAME)} строк**", unsafe_allow_html=False)
 
 st.subheader('Навыки')
 web_col, mobile_col, ds_col, eng_col, meta_col, desktop_col, chatbot_col = st.columns([1 for i in range(7)])
